@@ -1,0 +1,32 @@
+[
+    {
+        "name":"Carrasco Canedela Elisa Rosa",
+        "img":"../public/img/About3.png",
+        "link":"https://github.com/Cocom1n",
+        "lu":"TUV000534"
+    },
+    {
+        "name":"Nieto Leandro",
+        "img":"../public/img/About4.png",
+        "link":"",
+        "lu":""
+    },
+    {
+        "name":"Raskosky Valentin",
+        "img":"../public/img/About5.png",
+        "link":"",
+        "lu":""
+    },
+    {
+        "name":"Pioli Andrea Belen",
+        "img":"../public/img/About2.png",
+        "link":"",
+        "lu":""
+    },
+    {
+        "name":"Cupare Ramiro",
+        "img":"../public/img/About1.png",
+        "link":"",
+        "lu":""
+    }
+]
