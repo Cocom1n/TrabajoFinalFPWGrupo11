@@ -1,0 +1,82 @@
+[
+    {
+        "img":"img/zebra.png",
+        "code":"01",
+        "name":"zebra",
+        "description":"Black and white striping pattern.",
+        "sound":"../sonido/cebra.mp3"
+    },
+
+    {
+        "img":"img/cat.png",
+        "code":"02",
+        "name":"cat",
+        "description":"Tiny body covered with smooth fur.",
+        "sound":"../sonido/gato.mp3"
+    },
+
+    {
+        "img":"img/giraffe.png",
+        "code":"03",
+        "name":"giraffe",
+        "description":"The world's tallest mammals with a very long neck.",
+        "sound":"../sonido/jirafa.mp3"
+    },
+
+    {
+        "img":"img/lion.png",
+        "code":"04",
+        "name":"lion",
+        "description":"sharp claws with a yellow-gold coat.",
+        "sound":"../sonido/leon.mp3"
+    },
+
+    {
+        "img":"img/dog.png",
+        "code":"05",
+        "name":"dog",
+        "description":"energetic and the most loyal creature.",
+        "sound":"../sonido/perro.mp3"
+    },
+
+    {
+        "img":"img/cow.png",
+        "code":"06",
+        "name":"cow",
+        "description":"large mammals used as a livestock of milk.",
+        "sound":"../sonido/vaca.mp3"
+    },
+
+    {
+        "img":"../img/cerdo.png",
+        "code":"07",
+        "name":"pig",
+        "description":"A pig is a domesticated animal raised for its meat.",
+        "sound":"../sonido/cerdo.mp3"
+    },
+
+    {
+        "img":"../img/mono.png",
+        "code":"08",
+        "name":"monkey",
+        "description":"A monkey is an agile, intelligent primate.",
+        "sound":"../sonido/mono.mp3"
+    },
+
+    {
+        "img":"../img/elephant.jpg",
+        "code":"09",
+        "name":"elephant",
+        "description":"An elephant is a large, herbivorous mammal with a trunk and tusks.",
+        "sound":"../sonido/elefante.mp3"
+    },
+
+    {
+        "img":"../img/mouse.jpg",
+        "code":"10",
+        "name":"mouse",
+        "description":"Is a small, rodent mammal characterized by its long tail and sharp teeth.",
+        "sound":"../sonido/rata.mp3"
+    }
+    
+]

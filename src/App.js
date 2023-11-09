@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import  Inicio  from "./components/Inicio";
 import  AboutUs  from "./components/AboutUs";
+import AppAnimales from "./components/JuegoAnimales/AppAnimales.js"
 //import React from "react";
 
 function App (){
@@ -12,6 +13,7 @@ function App (){
             <Routes>
                 <Route path="/" element={<Inicio/>}/>
                 <Route path="aboutUs" element={<AboutUs/>}/>
+                <Route path="juegoAnimales" element={<AppAnimales/>}/>
                 {/* <Route path="*" element={<ErrorPage/>}/>
                 <Route path="comparador" element={<Comparador/>}/>
                 <Route path="dude" element={<DudePhaser/>}/>
