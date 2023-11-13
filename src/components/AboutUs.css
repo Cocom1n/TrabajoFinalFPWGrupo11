@@ -1,0 +1,17 @@
+img {
+    max-width: 200px;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.Card {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    align-items: center;
+}

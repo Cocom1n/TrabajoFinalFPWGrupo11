@@ -1,31 +1,36 @@
 [
     {
-        "name":"Carrasco Canedela Elisa Rosa",
-        "img":"../public/img/About3.png",
+        "code":"01",
+        "name":"Carrasco Canedela",
+        "img":"/img/About3.png",
         "link":"https://github.com/Cocom1n?tab=repositories",
         "lu":"TUV000534"
     },
     {
+        "code":"02",
         "name":"Nieto Leandro",
-        "img":"../public/img/About4.png",
+        "img":"/img/About4.png",
         "link":"https://github.com/yandro899?tab=repositories",
         "lu":"TUV000453"
     },
     {
+        "code":"03",
         "name":"Raskovsky Valentin",
-        "img":"../public/img/About5.png",
+        "img":"/img/About5.png",
         "link":"https://github.com/TuMaravilla?tab=repositories",
         "lu":"TUV000630"
     },
     {
+        "code":"04",
         "name":"Pioli Andrea Belen",
-        "img":"../public/img/About2.png",
+        "img":"/img/About2.png",
         "link":"https://github.com/PioliAndreaBelen?tab=repositories",
         "lu":"TUV000626"
     },
     {
+        "code":"05",
         "name":"Cupare Ramiro",
-        "img":"../public/img/About1.png",
+        "img":"/img/About1.png",
         "link":"https://github.com/AleCup?tab=repositories",
         "lu":"TUV000454"
     }

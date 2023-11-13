@@ -5,7 +5,7 @@ function ListaDeNotas() {
 
     const [lista, setLista] = useState([]);
     const [proceso, setproceso] = useState([]);
-    const [hecha, sethecha] = useState([]);
+    const [finalizada, setFinalizada] = useState([]);
     const [nota, setNota] = useState("");
     const [descripcion, setDescripcion] = useState("");
 
@@ -34,7 +34,7 @@ function ListaDeNotas() {
     }
 
     const anadirFinal = () => {
-        const idNota = Math.max(...hecha.map((nota) => nota.id),0) +1;
+        const idNota = Math.max(...finalizada.map((nota) => nota.id),0) +1;
         const estado = 3;
         const nuevaNota = {
                 id: idNota, 
@@ -42,7 +42,7 @@ function ListaDeNotas() {
                 desc:descripcion,
                 estado:estado
             };
-        sethecha([...hecha, nuevaNota]);
+            setFinalizada([...finalizada, nuevaNota]);
     }
 
     const borrar = (idAEliminar, estado) => {
@@ -56,17 +56,12 @@ function ListaDeNotas() {
                 setproceso(actualizarProceso);
                 break;
             case 3:
-                const actualizarFinal = hecha.filter(nota => nota.id !== idAEliminar);
-                sethecha(actualizarFinal);
+                const actualizarFinal = finalizada.filter(nota => nota.id !== idAEliminar);
+                setFinalizada(actualizarFinal);
                 break;
         }
     }
 
-    // const borrarProceso = (idAEliminar) => {
-    //     const nuevaLista = proceso.filter(nota => nota.id !== idAEliminar);
-
-    //     setproceso(nuevaLista);
-    // }
 
     return (
 
@@ -88,6 +83,7 @@ function ListaDeNotas() {
                     <li key={nota.id}>
                         {nota.id}- {nota.texto}
                         <button onClick={anadirProceso} >Enproceso</button>
+                        <button onClick={anadirFinal} >Finalizar</button>
                         <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
                         <p>{nota.desc}</p>
                         
@@ -96,7 +92,7 @@ function ListaDeNotas() {
             </ul>
 
             <ul>
-                <h3>Proceso</h3>
+                <h3>En proceso</h3>
                 {proceso.map((nota, index) => (
                     <li key={nota.id}>
                         {nota.id}- {nota.texto}
@@ -109,8 +105,8 @@ function ListaDeNotas() {
             </ul>
 
             <ul>
-                <h3>finalizada</h3>
-                {hecha.map((nota, index) => (
+                <h3>Finalizadas</h3>
+                {finalizada.map((nota, index) => (
                     <li key={nota.id}>
                         {nota.id}- {nota.texto}
                         <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
