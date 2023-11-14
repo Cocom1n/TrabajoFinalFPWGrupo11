@@ -3,13 +3,21 @@ import  Inicio  from "./components/Inicio";
 import  AboutUs  from "./components/AboutUs";
 import AppAnimales from "./components/JuegoAnimales/AppAnimales.js";
 import ListaDeNotas from "./components/ListaNotas/AppListaNotas.js";
+import "./App.css"
 //import React from "react";
 
 function App (){
     return(
         <Router>
-
-            {/* Aqui se agrega la navbar y se linkea con los cosos de abajo*/}
+            <nav className="Navbar">
+                <h2 className="tittle">Tittle</h2>
+                <section className="rutas">
+                    <Link to="/" className="ruta">Home</Link>
+                    <Link to="/aboutUs" className="ruta">AboutUs</Link>
+                    <Link to="/juegoAnimales" className="ruta">Game for Kids</Link>
+                    <Link to="/listaNotas" className="ruta">Things to do</Link>
+                </section>
+            </nav>
 
             <Routes>
                 <Route path="/" element={<Inicio/>}/>

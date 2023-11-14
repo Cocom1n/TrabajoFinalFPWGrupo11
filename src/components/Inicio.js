@@ -1,7 +1,7 @@
 function Inicio() {
     return(
         <div>
-            <h2>Prtada de inico owo</h2>
+            <h2>Pantalla inicio</h2>
         </div>
     )
 }

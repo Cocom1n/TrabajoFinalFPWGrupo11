@@ -1,0 +1,10 @@
+.Navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(236, 227, 227);
+}
+
+.ruta{
+    padding: 10px;    
+}
