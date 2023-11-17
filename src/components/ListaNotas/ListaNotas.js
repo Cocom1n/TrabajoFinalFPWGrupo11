@@ -21,7 +21,9 @@ function ListaDeNotas() {
         setLista([...lista, nuevaNota]);
     }
 
-    const anadirProceso = () => {
+    const anadirProceso = (idAnterior) => {
+        const actualizarLista = lista.filter(nota => nota.id !== idAnterior);
+            setLista(actualizarLista);
         const idNota = Math.max(...proceso.map((nota) => nota.id),0) +1;
         const estado = 2;
         const nuevaNota = {
@@ -33,7 +35,17 @@ function ListaDeNotas() {
         setproceso([...proceso, nuevaNota]);
     }
 
-    const anadirFinal = () => {
+    const anadirFinal = (idAnterior, estadoAnterior) => {
+        switch (estadoAnterior){
+            case 1:
+                const actualizarLista = lista.filter(nota => nota.id !== idAnterior);
+                setLista(actualizarLista);
+                break;
+            case 2:
+                const actualizarProceso = proceso.filter(nota => nota.id !== idAnterior);
+                setproceso(actualizarProceso);
+                break;
+        }
         const idNota = Math.max(...finalizada.map((nota) => nota.id),0) +1;
         const estado = 3;
         const nuevaNota = {
@@ -82,8 +94,8 @@ function ListaDeNotas() {
                 {lista.map((nota, index) => (
                     <li key={nota.id}>
                         {nota.id}- {nota.texto}
-                        <button onClick={anadirProceso} >Enproceso</button>
-                        <button onClick={anadirFinal} >Finalizar</button>
+                        <button onClick={() => anadirProceso(nota.id)} >Enproceso</button>
+                        <button onClick={() => anadirFinal(nota.id, nota.estado)} >Finalizar</button>
                         <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
                         <p>{nota.desc}</p>
                         
@@ -96,7 +108,7 @@ function ListaDeNotas() {
                 {proceso.map((nota, index) => (
                     <li key={nota.id}>
                         {nota.id}- {nota.texto}
-                        <button onClick={anadirFinal} >Finalizar</button>
+                        <button onClick={() => anadirFinal(nota.id, nota.estado)} >Finalizar</button>
                         <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
                         <p>{nota.desc}</p>
                         
