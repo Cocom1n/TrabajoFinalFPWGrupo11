@@ -1,0 +1,45 @@
+.cuadro{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.mainBoton{
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.ListasCont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 60px;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    padding: 0px 20px;
+    list-style-type: none;
+}
+
+button{
+    border: none;
+    margin: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+button:hover{
+    background-color: rgb(196, 196, 196);
+}
+
+h1{
+    margin: 30px;
+    text-align: center;
+}
+

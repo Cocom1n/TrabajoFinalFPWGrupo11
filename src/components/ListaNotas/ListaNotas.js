@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import "./listaNotas.css";
+import "./ListaNotas.css";
 
 function ListaDeNotas() {
 
@@ -21,21 +21,21 @@ function ListaDeNotas() {
         setLista([...lista, nuevaNota]);
     }
 
-    const anadirProceso = (idAnterior) => {
+    const anadirProceso = (idAnterior, texto, desc) => {
         const actualizarLista = lista.filter(nota => nota.id !== idAnterior);
             setLista(actualizarLista);
         const idNota = Math.max(...proceso.map((nota) => nota.id),0) +1;
         const estado = 2;
         const nuevaNota = {
                 id: idNota, 
-                texto: nota, 
-                desc:descripcion,
+                texto: texto, 
+                desc:desc,
                 estado:estado
             };
         setproceso([...proceso, nuevaNota]);
     }
 
-    const anadirFinal = (idAnterior, estadoAnterior) => {
+    const anadirFinal = (idAnterior, estadoAnterior, texto, desc) => {
         switch (estadoAnterior){
             case 1:
                 const actualizarLista = lista.filter(nota => nota.id !== idAnterior);
@@ -50,8 +50,8 @@ function ListaDeNotas() {
         const estado = 3;
         const nuevaNota = {
                 id: idNota, 
-                texto: nota, 
-                desc:descripcion,
+                texto: texto, 
+                desc:desc,
                 estado:estado
             };
             setFinalizada([...finalizada, nuevaNota]);
@@ -84,49 +84,50 @@ function ListaDeNotas() {
             <section className="cuadro">
                 <input value={nota} onChange={(e) => setNota(e.target.value)}></input>
                 <input value={descripcion} onChange={(e) => setDescripcion(e.target.value)}></input>
-                <section className="botones">
-                    <button onClick={añadir}>Agregar nota</button>
-                </section>
             </section>
+            <section className="mainBoton">
+                <button onClick={añadir}>Agregar nota</button>
+            </section>
+            
 
-            <ul>
-                <h3>Lista general</h3>
-                {lista.map((nota, index) => (
-                    <li key={nota.id}>
-                        {nota.id}- {nota.texto}
-                        <button onClick={() => anadirProceso(nota.id)} >Enproceso</button>
-                        <button onClick={() => anadirFinal(nota.id, nota.estado)} >Finalizar</button>
-                        <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
-                        <p>{nota.desc}</p>
-                        
-                    </li>
-                ))}
-            </ul>
+            <div className="ListasCont">
+                <ul>
+                    <h2>Lista general</h2>
+                    {lista.map((nota) => (
+                        <li key={nota.id}>
+                            <h3>{nota.id}- {nota.texto}</h3>
+                            <p>{nota.desc}</p>
+                            <button onClick={() => anadirProceso(nota.id, nota.texto, nota.desc)} >Enproceso</button>
+                            <button onClick={() => anadirFinal(nota.id, nota.estado, nota.texto, nota.desc)} >Finalizar</button>
+                            <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
+                        </li>
+                    ))}
+                </ul>
 
-            <ul>
-                <h3>En proceso</h3>
-                {proceso.map((nota, index) => (
-                    <li key={nota.id}>
-                        {nota.id}- {nota.texto}
-                        <button onClick={() => anadirFinal(nota.id, nota.estado)} >Finalizar</button>
-                        <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
-                        <p>{nota.desc}</p>
-                        
-                    </li>
-                ))}
-            </ul>
+                <ul>
+                    <h2>En proceso</h2>
+                    {proceso.map((nota, index) => (
+                        <li key={nota.id}>
+                            <h3>{nota.id}- {nota.texto}</h3>
+                            <p>{nota.desc}</p>
+                            <button onClick={() => anadirFinal(nota.id, nota.estado, nota.texto, nota.desc)} >Finalizar</button>
+                            <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
+                        </li>
+                    ))}
+                </ul>
 
-            <ul>
-                <h3>Finalizadas</h3>
-                {finalizada.map((nota, index) => (
-                    <li key={nota.id}>
-                        {nota.id}- {nota.texto}
-                        <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
-                        <p>{nota.desc}</p>
-                        
-                    </li>
-                ))}
-            </ul>
+                <ul>
+                    <h2>Finalizadas</h2>
+                    {finalizada.map((nota, index) => (
+                        <li key={nota.id}>
+                            <h3>{nota.id}- {nota.texto}</h3>
+                            <p>{nota.desc}</p>
+                            <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
         </div>
             
         </>
