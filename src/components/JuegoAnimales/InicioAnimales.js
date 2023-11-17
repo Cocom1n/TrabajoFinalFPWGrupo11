@@ -43,7 +43,7 @@ const [nombreJugador, setNombreJugador] = useState('');
                     placeholder="Nchild's name 2"
                     onChange={(e) => setNombreJugador2(e.target.value)}
                 />
-                <button className='boton' onClick={() => manejarClickJugar(nombreJugador, nombreJugador2)}>Jugar</button>
+                <button className='boton' onClick={() => manejarClickJugar(nombreJugador, nombreJugador2)}>Play</button>
 
             </div>
         );
