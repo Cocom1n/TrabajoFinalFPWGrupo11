@@ -48,7 +48,7 @@
     },
 
     {
-        "img":"../img/cerdo.png",
+        "img":"../img/pig.png",
         "code":"07",
         "name":"pig",
         "description":"A pig is a domesticated animal raised for its meat.",
@@ -56,7 +56,7 @@
     },
 
     {
-        "img":"../img/mono.png",
+        "img":"../img/monkey.png",
         "code":"08",
         "name":"monkey",
         "description":"A monkey is an agile, intelligent primate.",
@@ -64,7 +64,7 @@
     },
 
     {
-        "img":"../img/elephant.jpg",
+        "img":"../img/elephant.png",
         "code":"09",
         "name":"elephant",
         "description":"An elephant is a large, herbivorous mammal with a trunk and tusks.",
@@ -72,7 +72,7 @@
     },
 
     {
-        "img":"../img/mouse.jpg",
+        "img":"../img/mouse.png",
         "code":"10",
         "name":"mouse",
         "description":"Is a small, rodent mammal characterized by its long tail and sharp teeth.",
