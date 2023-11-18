@@ -48,7 +48,7 @@
     },
 
     {
-        "img":"../img/cerdo.png",
+        "img":"../img/pig.png",
         "code":"07",
         "name":"pig",
         "description":"A pig is a domesticated animal raised for its meat.",
@@ -64,7 +64,7 @@
     },
 
     {
-        "img":"../img/elephant.jpg",
+        "img":"../img/elephant.png",
         "code":"09",
         "name":"elephant",
         "description":"An elephant is a large, herbivorous mammal with a trunk and tusks.",

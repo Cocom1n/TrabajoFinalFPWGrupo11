@@ -79,14 +79,14 @@ function ListaDeNotas() {
 
         <>
         <div className="contenedor">
-            <h1>LISTA NOTAS</h1>
+            <h1 className="titulo">LISTA NOTAS</h1>
 
             <section className="cuadro">
                 <input value={nota} onChange={(e) => setNota(e.target.value)}></input>
                 <input value={descripcion} onChange={(e) => setDescripcion(e.target.value)}></input>
             </section>
             <section className="mainBoton">
-                <button onClick={añadir}>Agregar nota</button>
+                <button className="botonLN" onClick={añadir}>Agregar nota</button>
             </section>
             
 
@@ -97,32 +97,32 @@ function ListaDeNotas() {
                         <li key={nota.id}>
                             <h3>{nota.id}- {nota.texto}</h3>
                             <p>{nota.desc}</p>
-                            <button onClick={() => anadirProceso(nota.id, nota.texto, nota.desc)} >Enproceso</button>
-                            <button onClick={() => anadirFinal(nota.id, nota.estado, nota.texto, nota.desc)} >Finalizar</button>
-                            <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
+                            <button className="botonLN" onClick={() => anadirProceso(nota.id, nota.texto, nota.desc)} >Enproceso</button>
+                            <button className="botonLN" onClick={() => anadirFinal(nota.id, nota.estado, nota.texto, nota.desc)} >Finalizar</button>
+                            <button className="botonLN" onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
                         </li>
                     ))}
                 </ul>
 
                 <ul>
                     <h2>En proceso</h2>
-                    {proceso.map((nota, index) => (
+                    {proceso.map((nota) => (
                         <li key={nota.id}>
                             <h3>{nota.id}- {nota.texto}</h3>
                             <p>{nota.desc}</p>
-                            <button onClick={() => anadirFinal(nota.id, nota.estado, nota.texto, nota.desc)} >Finalizar</button>
-                            <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
+                            <button className="botonLN" onClick={() => anadirFinal(nota.id, nota.estado, nota.texto, nota.desc)} >Finalizar</button>
+                            <button className="botonLN" onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
                         </li>
                     ))}
                 </ul>
 
                 <ul>
                     <h2>Finalizadas</h2>
-                    {finalizada.map((nota, index) => (
+                    {finalizada.map((nota) => (
                         <li key={nota.id}>
                             <h3>{nota.id}- {nota.texto}</h3>
                             <p>{nota.desc}</p>
-                            <button onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
+                            <button className="botonLN" onClick={() => borrar(nota.id, nota.estado)}>Eliminar</button>
                         </li>
                     ))}
                 </ul>

@@ -9,7 +9,7 @@ function AboutUs() {
                 {Integantes.map ((Alumno) => (
                     <div className="Card" key= {Alumno.code}>
                         <h2>{Alumno.name}</h2>
-                        <img src={Alumno.img} alt={Alumno.name}/>
+                        <img className='imagenA' src={Alumno.img} alt={Alumno.name}/>
                         <a href={Alumno.link}>Repositorios</a>
                         <p>{Alumno.lu}</p>
                     </div>

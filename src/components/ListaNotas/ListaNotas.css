@@ -27,18 +27,18 @@ ul{
     list-style-type: none;
 }
 
-button{
+.botonLN{
     border: none;
     margin: 5px;
     padding: 5px 10px;
     border-radius: 5px;
 }
 
-button:hover{
+.botonLN:hover{
     background-color: rgb(196, 196, 196);
 }
 
-h1{
+.titulo{
     margin: 30px;
     text-align: center;
 }
