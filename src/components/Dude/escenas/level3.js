@@ -3,6 +3,7 @@ class Level3 extends Phaser.Scene{
         super("level3");
         this.score = 0;
         this.scoreText = "";
+        this.remainingTime = null;
     }
 
     init(data)
@@ -28,17 +29,24 @@ class Level3 extends Phaser.Scene{
         this.add.image(400, 300, 'backgroundlvl3');
         this.platformsl3 = this.physics.add.staticGroup();
         this.platformsl3.create(400, 565, 'ground-lvl3'); //piso
-        this.platformsl3.create(220, 240, 'platform1-lvl3');
+        this.platformsl3.create(220, 280, 'platform1-lvl3');
         this.platformsl3.create(125, 380, 'platform1-lvl3');
-        this.platformsl3.create(this.canvas.width-220, 240, 'platform1-lvl3');
+        this.platformsl3.create(400, 180, 'platform1-lvl3');
+        this.platformsl3.create(this.canvas.width-220, 280, 'platform1-lvl3');
         this.platformsl3.create(this.canvas.width-125, 380, 'platform1-lvl3');
-        this.add.image(400, 100, 'boss');
+        
+        //Jefe
+        this.boss = this.physics.add.sprite(400, 60, 'boss');
+        this.physics.add.collider(this.boss, this.platformsl3);
 
         //creacion del player
         this.player = this.physics.add.sprite(150, 460, 'dude-lvl3');
         //rebote y evitar que el player se salga del mundo
         //this.player.setBounce(0.2);
         this.player.setCollideWorldBounds(true);
+
+        this.physics.add.overlap(this.boss, this.player, this.onOverlapBoss, null, this);
+
         //creacion de las animaciones del player
         //animacion para izquierda
         this.anims.create({
@@ -66,7 +74,7 @@ class Level3 extends Phaser.Scene{
         //creando teclas para mover al player
         this.cursors = this.input.keyboard.createCursorKeys();
 
-        // Misiles
+        // Pelotas
         this.ballRight = this.physics.add.group();
         this.ballRightManager = {
             cooldown: 500,
@@ -77,6 +85,7 @@ class Level3 extends Phaser.Scene{
         };
 
         this.physics.add.collider(this.ballRight, this.platformsl3);
+        this.physics.add.overlap(this.ballRight, this.player, this.onPickUpBalls, null, this);
 
         this.ballLeft = this.physics.add.group();
         this.ballLeftManager = {
@@ -88,6 +97,7 @@ class Level3 extends Phaser.Scene{
         };
 
         this.physics.add.collider(this.ballLeft, this.platformsl3);
+        this.physics.add.overlap(this.ballLeft, this.player, this.onPickUpBalls, null, this);
 
         this.ballUp = this.physics.add.group();
         this.ballUpManager = {
@@ -99,8 +109,9 @@ class Level3 extends Phaser.Scene{
         };
 
         this.physics.add.collider(this.ballUp, this.platformsl3);
+        this.physics.add.overlap(this.ballUp, this.player, this.onPickUpBalls, null, this);
 
-        // Patrones de ataque
+        // Patrones de pelotas
         this.ataques = [
             {
                 direccion: 0,
@@ -119,9 +130,26 @@ class Level3 extends Phaser.Scene{
                 timeAttack: 25000
             }
         ];
+
+        // TIEMPO
+        this.remainingTime = this.add.text(50, 50, 'Tiempo: 120', {fontSize: '40px', fill: '#FFF'});
+        this.endTime = 120000;
+
+        // Daño acumulado
+        this.danoAcumulado = 0;
+        this.danoAcumuladoText = this.add.text(50, 550, 'Daño: '+this.danoAcumulado, {fontSize: '40px', fill: '#FFF'});
+    
+        // Vida jefe
+        this.bossLife = 50;
+        this.bossLifeText = this.add.text(500, 550, 'Vida Jefe: '+this.bossLife, {fontSize: '40px', fill: '#FFF'});
     }
 
     update(time) {
+        this.remainingTime.setText('Tiempo: ' + Math.trunc((this.endTime-time)/1000));
+        this.danoAcumuladoText.setText('Daño: '+this.danoAcumulado);
+        this.bossLifeText.setText('Vida Jefe: '+this.bossLife);
+
+
         //movimiento del player de izquierda a derecha.
         if (this.cursors.left.isDown){
             this.player.setVelocityX(-160);
@@ -188,12 +216,12 @@ class Level3 extends Phaser.Scene{
                 {
                     if (direccion == 1)
                     {
-                        misil = balls.create(0, this.player.y-80, 'misil');
+                        misil = balls.create(0, this.player.y-Phaser.Math.Between(75, 85), 'misil');
                         misil.setVelocityX(200);
                     }
                     else
                     {
-                        misil = balls.create(this.canvas.width, this.player.y-80, 'misil');
+                        misil = balls.create(this.canvas.width, this.player.y-Phaser.Math.Between(75, 85), 'misil');
                         misil.setVelocityX(-200);
                     }
                 }
@@ -219,6 +247,22 @@ class Level3 extends Phaser.Scene{
                 children.destroy();
             }
         });
+    }
+
+    onPickUpBalls(player, ball)
+    {
+        if (ball)
+        {
+            ball.destroy();
+            this.danoAcumulado++;
+        }
+    }
+
+    onOverlapBoss(player, boss)
+    {
+        this.bossLife -= this.danoAcumulado;
+        this.danoAcumulado = 0;
+        console.log("aaa\n");
     }
 }
 export default Level3;
