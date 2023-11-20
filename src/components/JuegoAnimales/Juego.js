@@ -131,32 +131,40 @@ function Juego({ nombreJugador, nombreJugador2, puntaje, puntaje2, setPuntaje, s
 
     return (
         <div className='juego'>
-            <h1 className='animal'>{!segundoTurno && nombreJugador} {segundoTurno && nombreJugador2}, What animal is it?</h1>
-            <p className='ronda'>Actual round: {rondaActual}</p>
-            {/* <img src={`img/${animalObjetivo}.png`} alt={animalObjetivo} /> */}
-            <img src={animalObjetivo.img} alt={animalObjetivo.name} />
-            <p> {animalObjetivo.description}</p>
+            <section className='LadoA'>
+                <h1>{!segundoTurno && nombreJugador} {segundoTurno && nombreJugador2}, What animal is it?</h1>
+                <p>Actual round: {rondaActual}</p>
+                <img src={animalObjetivo.img} alt={animalObjetivo.name} />
+            </section>
 
-            <div>
-                {opciones.map((animal) => (
-                    <button className='boton2'
-                        key={animal.code}
-                        onClick={() => verificarRespuesta(animal)}
-                        disabled={!puedeHacerClic || opcionesDeshabilitadas}
-                    >
-                        {animal.name}
-                    </button>
-                ))}
-            </div>
-            <p>Clue: {animalObjetivo.description}</p>
-            {esCorrecto === true && <p>Correct!</p>}
-            {esCorrecto === false && <p>Incorrect!</p>}
-            <button className='boton3'
-                onClick={siguienteRonda}
-            >
-                Next
-            </button>
-            {comodin == false || comodin2 == false? <button onClick={usarComodin}> Use Help </button> : <div></div>}
+            <section className='LadoB'>
+                <p className='clue'>Clue: {animalObjetivo.description}</p>
+                <div>
+                    {opciones.map((animal) => (
+                        <button className='botonOpciones'
+                            key={animal.code}
+                            onClick={() => verificarRespuesta(animal)}
+                            disabled={!puedeHacerClic || opcionesDeshabilitadas}
+                        >
+                            {animal.name}
+                        </button>
+                    ))}
+                </div>
+                <div className='respuesta'>
+                    {esCorrecto === true && <p>Correct!</p>}
+                    {esCorrecto === false && <p>Incorrect!</p>}
+                </div>
+
+                
+                <section className='otrosbotones'>
+                    <button onClick={siguienteRonda}>Next</button>
+                    {!segundoTurno && comodin == false? <button onClick={usarComodin}>Use Help</button> : <lavel></lavel>}
+                    {segundoTurno && comodin2 == false? <button onClick={usarComodin}>Use Help</button> : <lavel></lavel>}
+                </section>
+                
+
+                
+            </section>
         </div>
     );
 }
