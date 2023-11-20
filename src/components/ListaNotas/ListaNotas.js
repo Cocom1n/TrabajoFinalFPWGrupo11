@@ -78,7 +78,7 @@ function ListaDeNotas() {
     return (
 
         <>
-        <div className="contenedor">
+        <div className="contenedorLN">
             <h1 className="titulo">LISTA NOTAS</h1>
 
             <section className="cuadro">

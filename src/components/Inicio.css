@@ -2,6 +2,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    color: azure;
+    /* background-color: rgb(255, 255, 255); */
+    height: 400px;
+    width: 550px;
+    margin: 100px auto;
+    font-family: 'Victor Mono', monospace;
+}
+
+.separador{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+    background-image: url(../../public/img/Inicio.png);
+    background-size: cover;
 }
 
 .Botones button{
@@ -10,4 +25,11 @@
     padding: 5px 10px;
     border-radius: 5px;
     text-decoration: none;
+}
+
+.imagen{
+    /* background-image: url(); */
+    background-size: cover;
+    width: 100vh;
+    height: 100vh;
 }
