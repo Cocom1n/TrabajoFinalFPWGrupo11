@@ -5,11 +5,11 @@ function AboutUs() {
 
     return(
         <div>
-            <section >
+            <section className='AboutUsCards'>
                 {Integantes.map ((Alumno) => (
                     <div className="Card" key= {Alumno.code}>
+                        <img className='imagenA' src={Alumno.img} alt={Alumno.name}/>
                         <h2>{Alumno.name}</h2>
-                        <img src={Alumno.img} alt={Alumno.name}/>
                         <a href={Alumno.link}>Repositorios</a>
                         <p>{Alumno.lu}</p>
                     </div>

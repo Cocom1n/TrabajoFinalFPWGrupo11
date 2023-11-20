@@ -3,7 +3,7 @@ import Inicio from './InicioAnimales';
 import Juego from './Juego';
 
 
-function Felicitaciones({ nombreJugador, nombreJugador2, puntaje, puntaje2, setMostrarFelicitaciones, setMostrarJuego, setRondaActual, setSegundoTurno, segundoTurno}) 
+function Felicitaciones({ nombreJugador, nombreJugador2, puntaje, puntaje2, setMostrarFelicitaciones, setMostrarJuego, setRondaActual, setSegundoTurno, segundoTurno, comodin, setComodin, comodin2, setComodin2}) 
 {
     const volverAInicio = ()=>{
         //se cambian los estados a false para volver a jugar el juego y se reinicia el N° de rondas
@@ -11,6 +11,8 @@ function Felicitaciones({ nombreJugador, nombreJugador2, puntaje, puntaje2, setM
         setSegundoTurno(true);
         setMostrarFelicitaciones(false);
         setMostrarJuego(true);
+        //setComodin(false);
+        //setComodin2(false);
     }
     const MostrarGanador = ()=>{
         // if(segundoTurno == true)
