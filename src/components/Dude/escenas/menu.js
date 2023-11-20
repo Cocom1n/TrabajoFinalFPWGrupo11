@@ -4,10 +4,10 @@ class menu extends Phaser.Scene {
     }
   
     preload() {
-      this.load.image('fondo-cielo', '../img/fondo-cielo.png');
-      this.load.image('boton1', '../img/boton.png');
-      this.load.audio('musica-menu','../sonido/musica-menu.mp3');
-      this.load.spritesheet('dude-baile', '../img/sprite-menu.png', { frameWidth: 32, frameHeight: 48 });
+      this.load.image('fondo-cielo', './img/fondo-cielo.png');
+      this.load.image('boton1', './img/boton.png');
+      this.load.audio('musica-menu','./sonido/musica-menu.mp3');
+      this.load.spritesheet('dude-baile', './img/sprite-menu.png', { frameWidth: 32, frameHeight: 48 });
 
     }
   
@@ -49,7 +49,7 @@ class menu extends Phaser.Scene {
         this.sonido.stop();
 
         //cambiar el nombre de la escena a la que tiene q cambiar owo
-        this.scene.start('Escena1');
+        this.scene.start('level1');
       });
 
     }

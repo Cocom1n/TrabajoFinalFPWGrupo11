@@ -1,15 +1,16 @@
 import Phaser from 'phaser'
 import { useState, useEffect } from 'react'
 import menu from "./escenas/menu.js"
-import Escena1 from "./escenas/escenas1.js"
-import level2 from "./escenas/level2.js"
+import Level1 from "./escenas/escenas1.js"
+import Level2 from "./escenas/level2.js"
+import Level3 from "./escenas/level3.js"
 import perdiste from "./escenas/perdiste.js"
 import win from "./escenas/win.js"
 
 function AppDude()
 {
     const [listo, setListo] = useState(false);
-    const Escenas = [menu, Escena1, level2, perdiste, win];
+    const Escenas = [Level3, menu, Level1, Level2, perdiste, win];
     const createEscena = Scene => new Scene();
     const initEscena = () => Escenas.map(createEscena);
 
@@ -26,7 +27,8 @@ function AppDude()
         
                     physics:{
                         default:'arcade',
-                        arcade: { gravity:{y:300} }
+                        arcade: { gravity:{y:300} },
+                        debug: true
                     },
         
             //aqui agregar sus escenas

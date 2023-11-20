@@ -1,23 +1,24 @@
- class Escena1 extends Phaser.Scene{ 
-     
-    puntajeText="";
-    puntaje=0;
+ class Level1 extends Phaser.Scene{ 
 
     constructor(){
-       super("Escena1");
+       super("level1");
        this.platforms = null;
     }
- 
 
     preload()   {
-        this.load.image('sky','../img/sky.png');
-        this.load.image('ground','../img/platform.png');
-        this.load.image('star','../img/star.png');
-        this.load.image('bomb','../img/bomb.png'); 
-        this.load.spritesheet('dude','../img/dude.png',{frameWidth:32,frameHeight:48});   
+        this.load.image('sky','./img/sky.png');
+        this.load.image('ground','./img/platform.png');
+        this.load.image('star','./img/star.png');
+        this.load.image('bomb','./img/bomb.png'); 
+        this.load.spritesheet('dude','./img/dude.png',{frameWidth:32,frameHeight:48});   
     }
 
     create(){
+        this.puntajeText="";
+        this.puntaje=0;
+        this.collectedStars = 0;
+        this.scoreMult = 1;
+
         this.add.image(400, 300, 'sky');
         this.platforms = this.physics.add.staticGroup();
         this.platforms.create(400, 568, 'ground').setScale(2).refreshBody();
@@ -80,7 +81,7 @@
         //creacion de bombas
         this.bombs = this.physics.add.group();
         this.physics.add.collider(this.bombs, this.platforms);
-        this.physics.add.collider(this.player, this.bombs, this.hitBomb, null, this);
+        this.physics.add.overlap(this.player, this.bombs, this.hitBomb, null, this);
 
     }
         
@@ -97,19 +98,24 @@
             this.player.setVelocityX(0);
             this.player.anims.play('turn');
         }
-            if (this.cursors.up.isDown && this.player.body.touching.down) {
+        if (this.cursors.up.isDown && this.player.body.touching.down) {
             this.player.setVelocityY(-330);
         }
+
+        if (this.player.body.touching.down)
+            this.scoreMult = 1
     }
 
     //Colisión jugador y estrellas
     collectStar(player, star) {
         star.disableBody(true, true);
-        this.puntaje += 10;
+        this.puntaje += 10 * this.scoreMult;
+        this.collectedStars++;
+        this.scoreMult *= 2;
         this.puntajeText.setText('Puntaje: ' + this.puntaje);
         
-        if (this.puntaje >= 160) {
-            this.scene.start('level2');
+        if (this.collectedStars >= 20) {
+            this.scene.start('level2', {puntaje: this.puntaje});
         }  
         
         //bombas
@@ -136,4 +142,4 @@
         this.scene.start('Perdiste', {puntaje: puntajeAPasar});  
     }
 }
-export default Escena1 
+export default Level1 
