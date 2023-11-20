@@ -1,14 +1,59 @@
+html{
+    width: 100%;
+    height: 100vh;
+    /* overflow: hidden; */
+    background-color: #1b1526;
+}
 .Navbar{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(236, 227, 227);
+    background-color: #1b1526;
 }
 
-.ruta{
-    padding: 10px;    
+.rutaNav{
+    padding: 10px;  
+    background-color: #f9f1fb; 
+    border-radius: 50px; 
+    margin: 0 10px;
+    color: inherit;
+    text-decoration: inherit;
+    color: #1b1526;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+.rutaNav:hover{
+    background-color: #462b8b;
+    color: #f9f1fb;
 }
 
 .tittle{
-    padding: 0px 30px;
+    padding: 0px 15px;
+    color: inherit;
+    text-decoration: inherit;
+    color: #c897c9;
+    font-size: 30px;
+}
+
+.tittle:hover{
+    color: #964ea8;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    /* background-color: #f9f1fb; */
+    margin: 0;
+    padding: 15px 50px;
+    height: 100%;
+    width: 300px;
+}
+
+.imglogo{
+    background-image: url(../public/img/logo.png);
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    margin: 10px;
 }
