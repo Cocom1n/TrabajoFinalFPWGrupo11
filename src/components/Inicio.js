@@ -1,7 +1,29 @@
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import "./Inicio.css"
+
+
+
 function Inicio() {
     return(
-        <div>
-            <h2>Pantalla inicio</h2>
+        <div className="separador"> 
+            <section className="contenedor">
+                <h1>Grupo 11</h1>
+                <h2>Fundamentos de Programacion Web</h2>
+                <h2>Trabajo Final - 2023</h2>
+
+                <section className="Botones">
+                    <button>
+                        <Link to="/aboutUs" className="ruta">About Us</Link>
+                    </button>
+                    <button>
+                        <Link to="/juegoAnimales" className="ruta">Game for Kids</Link>
+                    </button>
+                    <button>
+                        <Link to="/listaNotas" className="ruta">Things to do</Link>
+                    </button>
+                </section>
+            </section>
+            <div className="imagen"></div>
         </div>
     )
 }

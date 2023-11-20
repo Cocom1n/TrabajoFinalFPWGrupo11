@@ -5,19 +5,21 @@ import AppAnimales from "./components/JuegoAnimales/AppAnimales.js";
 import ListaDeNotas from "./components/ListaNotas/AppListaNotas.js";
 import AppDude from "./components/Dude/AppDude.js";
 import "./App.css"
-//import React from "react";
 
 function App (){
     return(
         <Router>
             <nav className="Navbar">
-                <h2 className="tittle">Tittle</h2>
+                <h2 className="logo">
+                    <div className="imglogo"></div>
+                <Link className="tittle" to="/">LOS GATOS</Link>
+                </h2>
                 <section className="rutas">
-                    <Link to="/" className="ruta">Home</Link>
-                    <Link to="/aboutUs" className="ruta">AboutUs</Link>
-                    <Link to="/juegoAnimales" className="ruta">Game for Kids</Link>
-                    <Link to="/listaNotas" className="ruta">Things to do</Link>
-                    <Link to="/dude" className="ruta">Dude Game</Link>
+                    {/* <Link to="/" className="ruta">LOS GATOS</Link> */}
+                    <Link to="/aboutUs" className="rutaNav">AboutUs</Link>
+                    <Link to="/juegoAnimales" className="rutaNav">Game for Kids</Link>
+                    <Link to="/listaNotas" className="rutaNav">Things to do</Link>
+                    <Link to="/dude" className="rutaNav">Dude Game</Link>
                 </section>
             </nav>
 

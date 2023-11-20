@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import data from './data/animales.json'
 
-function Juego({ nombreJugador, nombreJugador2, puntaje, puntaje2, setPuntaje, setPuntaje2, alTerminar, rondaActual,setRondaActual, segundoTurno, setSegundoTurno}) {
+function Juego({ nombreJugador, nombreJugador2, puntaje, puntaje2, setPuntaje, setPuntaje2, alTerminar, rondaActual, setRondaActual, segundoTurno, setSegundoTurno, comodin, setComodin, comodin2, setComodin2 }) {
     const [animalObjetivo, setAnimalObjetivo] = useState({
-        "img":"",
-        "code":"",
-        "name":"",
-        "description":"",
-        "sound":""
+        "img": "",
+        "code": "",
+        "name": "",
+        "description": "",
+        "sound": ""
     });
 
     const [opciones, setOpciones] = useState([]);
@@ -44,49 +44,48 @@ function Juego({ nombreJugador, nombreJugador2, puntaje, puntaje2, setPuntaje, s
 
     const verificarRespuesta = (animalSeleccionado) => {
 
-                if(segundoTurno == true)
-                {
-                    if (animalSeleccionado.name === animalObjetivo.name) {
-                        setEsCorrecto(true);
-                        setPuntaje2(puntaje2 + 1);
-                        let animalSound = new Audio(animalObjetivo.sound);
-                        animalSound.play();
-                    } else {
-                        setEsCorrecto(false);
-                    }
-                    setPuedeHacerClic(false);
-                }
-                else{
-                    if (animalSeleccionado.name === animalObjetivo.name) {
-                        setEsCorrecto(true);
-                        setPuntaje(puntaje + 1);
-                        let animalSound = new Audio(animalObjetivo.sound);
-                        animalSound.play();
-                    } else {
-                        setEsCorrecto(false);
-                    }
-                    setPuedeHacerClic(false);
-                }
-        };
+        if (segundoTurno == true) {
+            if (animalSeleccionado.name === animalObjetivo.name) {
+                setEsCorrecto(true);
+                setPuntaje2(puntaje2 + 1);
+                let animalSound = new Audio(animalObjetivo.sound);
+                animalSound.play();
+            } else {
+                setEsCorrecto(false);
+            }
+            setPuedeHacerClic(false);
+        }
+        else {
+            if (animalSeleccionado.name === animalObjetivo.name) {
+                setEsCorrecto(true);
+                setPuntaje(puntaje + 1);
+                let animalSound = new Audio(animalObjetivo.sound);
+                animalSound.play();
+            } else {
+                setEsCorrecto(false);
+            }
+            setPuedeHacerClic(false);
+        }
+    };
 
     const siguienteRonda = () => {
-        
-        
+
+
         if (rondaActual < rondasTotales || segundoTurno) {
             //setRondaActual(rondaActual + 1);
             setEsCorrecto(null);
             setPuedeHacerClic(true);
             obtenerOpcionesAleatorias();
             console.log(segundoTurno);
-            if (!segundoTurno)
-            {
+            if (!segundoTurno) {
                 setSegundoTurno(true);
                 console.log(segundoTurno);
+                
             }
-            else
-            {
+            else {
                 setSegundoTurno(false);
-                setRondaActual(rondaActual + 1); 
+                setRondaActual(rondaActual + 1);
+                
             }
         }
         else {
@@ -95,6 +94,36 @@ function Juego({ nombreJugador, nombreJugador2, puntaje, puntaje2, setPuntaje, s
     };
 
     const opcionesDeshabilitadas = esCorrecto !== null;
+
+    function usarComodin() {
+        if (segundoTurno == false) {
+            if (comodin == false) {
+                setComodin(true)
+                for (let i = 0; i < opciones.length; i++) {
+                    if (opciones.length >= 3) {
+                        if (opciones[i].name !== animalObjetivo.name) {
+                            const auxiliar = opciones.filter(opcion => opcion.name != opciones[i].name)
+                            setOpciones(auxiliar)
+                        }
+                    }
+                }
+            }
+        }
+        if (segundoTurno == true){
+            if (comodin2 == false) {
+                setComodin2(true)
+                for (let i = 0; i < opciones.length; i++) {
+                    if (opciones.length >= 3) {
+                        if (opciones[i].name !== animalObjetivo.name) {
+                            const auxiliar = opciones.filter(opcion => opcion.name != opciones[i].name)
+                            setOpciones(auxiliar)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     useEffect(() => {
         obtenerOpcionesAleatorias();
@@ -122,13 +151,16 @@ function Juego({ nombreJugador, nombreJugador2, puntaje, puntaje2, setPuntaje, s
             <p>Clue: {animalObjetivo.description}</p>
             {esCorrecto === true && <p>Correct!</p>}
             {esCorrecto === false && <p>Incorrect!</p>}
-            <button className='boton3' 
+            <button className='boton3'
                 onClick={siguienteRonda}
-                >
-                    Next
-                </button>
+            >
+                Next
+            </button>
+            {comodin == false || comodin2 == false? <button onClick={usarComodin}> Use Help </button> : <div></div>}
         </div>
     );
 }
+
+
 
 export default Juego;
