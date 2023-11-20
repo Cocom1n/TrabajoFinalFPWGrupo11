@@ -19,7 +19,7 @@ class Level3 extends Phaser.Scene{
 
         this.load.image('backgroundlvl3','./img/level2/background-lvl2.png');
         this.load.image('boss','./img/level3/boss.png');
-        this.load.image('misil','./img/level3/misil.png');
+        this.load.image('lana','./img/level3/Lana.png');
         this.load.image('ground-lvl3','./img/level2/platform2-lvl2.png');
         this.load.image('platform1-lvl3','./img/level2/platform1-lvl2.png');
         this.load.spritesheet('dude-lvl3','./img/level2/dude.png', { frameWidth: 32, frameHeight: 48});
@@ -111,37 +111,62 @@ class Level3 extends Phaser.Scene{
         this.physics.add.collider(this.ballUp, this.platformsl3);
         this.physics.add.overlap(this.ballUp, this.player, this.onPickUpBalls, null, this);
 
+        // TIEMPO
+        this.remainingTime = this.add.text(50, 50, 'Tiempo: 120', {fontSize: '40px', fill: '#FFF'});
+        this.startTime = this.time.now;
+        this.endTime = this.startTime+80000;
+
         // Patrones de pelotas
         this.ataques = [
             {
                 direccion: 0,
-                timeAttack: 1500
+                timeAttack: this.startTime+1500
             },
             {
                 direccion: 1,
-                timeAttack: 7000
+                timeAttack: this.startTime+7000
             },
             {
                 direccion: 2,
-                timeAttack: 15000
+                timeAttack: this.startTime+15000
             },
             {
                 direccion: 0,
-                timeAttack: 25000
-            }
+                timeAttack: this.startTime+25000
+            },
+            {
+                direccion: 1,
+                timeAttack: this.startTime+30000
+            },
+            {
+                direccion: 2,
+                timeAttack: this.startTime+45000
+            },
+            {
+                direccion: 0,
+                timeAttack: this.startTime+52000
+            },
+            {
+                direccion: 2,
+                timeAttack: this.startTime+60000
+            },
+            {
+                direccion: 1,
+                timeAttack: this.startTime+68000
+            },
+            {
+                direccion: 0,
+                timeAttack: this.startTime+75000
+            },
         ];
-
-        // TIEMPO
-        this.remainingTime = this.add.text(50, 50, 'Tiempo: 120', {fontSize: '40px', fill: '#FFF'});
-        this.endTime = 120000;
 
         // Daño acumulado
         this.danoAcumulado = 0;
         this.danoAcumuladoText = this.add.text(50, 550, 'Daño: '+this.danoAcumulado, {fontSize: '40px', fill: '#FFF'});
     
         // Vida jefe
-        this.bossLife = 50;
-        this.bossLifeText = this.add.text(500, 550, 'Vida Jefe: '+this.bossLife, {fontSize: '40px', fill: '#FFF'});
+        this.bossLife = 40;
+        this.bossLifeText = this.add.text(450, 550, 'Vida Jefe: '+this.bossLife, {fontSize: '40px', fill: '#FFF'});
     }
 
     update(time) {
@@ -191,6 +216,17 @@ class Level3 extends Phaser.Scene{
         this.checkBallsLife(this.ballUp);
         this.checkBallsLife(this.ballLeft);
         this.checkBallsLife(this.ballRight);
+
+        // Condiciones de victoria/derrota
+        if (this.bossLife <= 0)
+        {
+            let addScore = 10*Math.trunc((this.endTime-time)/1000);
+            this.scene.start('win',{puntos: this.score + addScore});
+        }
+        if (this.endTime-time < 0)
+        {
+            this.scene.start('Perdiste',{puntos: this.score});
+        }
     }
 
     checkSpawnBalls(balls, ballsManager= {cooldown: 500,nextTimeShoot: 0,max : 8,count : 0,shooting: true}, time, direccion)
@@ -199,34 +235,34 @@ class Level3 extends Phaser.Scene{
         {
             if (ballsManager.nextTimeShoot < time)
             {
-                let misil;
+                let lana;
                 if (direccion == 0)
                 {
-                    misil = balls.create(Phaser.Math.Between(50, this.canvas.width-50), -10, 'misil');
+                    lana = balls.create(Phaser.Math.Between(50, this.canvas.width-50), -10, 'lana');
                     if (Phaser.Math.Between(-1, 1) <= 0)
                     {
-                        misil.setVelocityX(-80);
+                        lana.setVelocityX(-80);
                     }
                     else
                     {
-                        misil.setVelocityX(80);
+                        lana.setVelocityX(80);
                     } 
                 }
                 else
                 {
                     if (direccion == 1)
                     {
-                        misil = balls.create(0, this.player.y-Phaser.Math.Between(75, 85), 'misil');
-                        misil.setVelocityX(200);
+                        lana = balls.create(0, this.player.y-Phaser.Math.Between(75, 85), 'lana');
+                        lana.setVelocityX(200);
                     }
                     else
                     {
-                        misil = balls.create(this.canvas.width, this.player.y-Phaser.Math.Between(75, 85), 'misil');
-                        misil.setVelocityX(-200);
+                        lana = balls.create(this.canvas.width, this.player.y-Phaser.Math.Between(75, 85), 'lana');
+                        lana.setVelocityX(-200);
                     }
                 }
                 
-                misil.setBounce(1);
+                lana.setBounce(1);
                 ballsManager.nextTimeShoot = time + ballsManager.cooldown;
                 ballsManager.count++;
 

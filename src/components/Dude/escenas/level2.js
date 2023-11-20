@@ -143,7 +143,7 @@ class Level2 extends Phaser.Scene{
         bomb.setCollideWorldBounds(true); //evita que la bomba se salga de la pantalla, chocando con los bordes del mundo
         bomb.setVelocity(Phaser.Math.Between(-200, 200), 50); //velocidad de la bomba
         if (this.collectedStars >= 10) {
-            this.scene.start('win');
+            this.scene.start('level3', {puntaje: this.score});
         }
     }
     collectApple2(player, apples2) { //lo mismo que arriba, solo que esto es para la segunda fila de manzanas que aparece abajo
@@ -157,7 +157,7 @@ class Level2 extends Phaser.Scene{
         bomb.setCollideWorldBounds(true);
         bomb.setVelocity(Phaser.Math.Between(-100, 100), 40);
         if (this.collectedStars >= 10) {
-            this.scene.start('win');
+            this.scene.start('level3', {puntaje: this.score});
         }
     }
     //funcion para que las bombas afecten al player, si choca con una, el jugador que suspendido,

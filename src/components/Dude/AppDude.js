@@ -10,7 +10,7 @@ import win from "./escenas/win.js"
 function AppDude()
 {
     const [listo, setListo] = useState(false);
-    const Escenas = [Level3, menu, Level1, Level2, perdiste, win];
+    const Escenas = [menu, Level1, Level2, Level3, perdiste, win];
     const createEscena = Scene => new Scene();
     const initEscena = () => Escenas.map(createEscena);
 
