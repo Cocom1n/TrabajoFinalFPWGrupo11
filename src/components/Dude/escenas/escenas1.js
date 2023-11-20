@@ -75,7 +75,7 @@
         this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
 
         //puntaje
-        this.puntajeText = this.add.text(16, 16, 'puntaje: 0', { fontSize: '32px', fill: '#000' });
+        this.puntajeText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 
 
         //creacion de bombas
@@ -112,7 +112,7 @@
         this.puntaje += 10 * this.scoreMult;
         this.collectedStars++;
         this.scoreMult *= 2;
-        this.puntajeText.setText('Puntaje: ' + this.puntaje);
+        this.puntajeText.setText('Score: ' + this.puntaje);
         
         if (this.collectedStars >= 20) {
             this.scene.start('level2', {puntaje: this.puntaje});

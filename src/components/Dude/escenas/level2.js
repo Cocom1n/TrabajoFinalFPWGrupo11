@@ -101,7 +101,7 @@ class Level2 extends Phaser.Scene{
         this.physics.add.overlap(this.player, this.apples2, this.collectApple2, null, this);
 
         //para controlar el puntaje
-        this.scoreText = this.add.text(250, 50, 'Puntos: '+this.score, {fontSize: '40px', fill: '#FFF'});
+        this.scoreText = this.add.text(250, 50, 'Score: '+this.score, {fontSize: '40px', fill: '#FFF'});
 
         //para agregar bombas
         this.bombslv2 = this.physics.add.group();
@@ -135,7 +135,7 @@ class Level2 extends Phaser.Scene{
         apples.disableBody(true, true);
         this.score +=10;
         this.collectedStars++;
-        this.scoreText.setText('Puntos:' + this.score);
+        this.scoreText.setText('Score:' + this.score);
         //crea una bomba en la ubicacion contraria al player cuando recoge manzanas, 1 bomba por cada manzana
         let x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
         let bomb = this.bombslv2.create(x, 15, 'bomb2');
@@ -150,7 +150,7 @@ class Level2 extends Phaser.Scene{
         apples2.disableBody(true, true);
         this.score +=10;
         this.collectedStars++;
-        this.scoreText.setText('Puntos:' + this.score);
+        this.scoreText.setText('Score:' + this.score);
         let x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
         let bomb = this.bombslv2.create(x, 15, 'bomb2');
         bomb.setBounce(1);

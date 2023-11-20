@@ -112,7 +112,7 @@ class Level3 extends Phaser.Scene{
         this.physics.add.overlap(this.ballUp, this.player, this.onPickUpBalls, null, this);
 
         // TIEMPO
-        this.remainingTime = this.add.text(50, 50, 'Tiempo: 120', {fontSize: '40px', fill: '#FFF'});
+        this.remainingTime = this.add.text(50, 50, 'Time: 120', {fontSize: '40px', fill: '#FFF'});
         this.startTime = this.time.now;
         this.endTime = this.startTime+80000;
 
@@ -162,17 +162,17 @@ class Level3 extends Phaser.Scene{
 
         // Daño acumulado
         this.danoAcumulado = 0;
-        this.danoAcumuladoText = this.add.text(50, 550, 'Daño: '+this.danoAcumulado, {fontSize: '40px', fill: '#FFF'});
+        this.danoAcumuladoText = this.add.text(50, 550, 'Woll: '+this.danoAcumulado, {fontSize: '40px', fill: '#FFF'});
     
         // Vida jefe
         this.bossLife = 40;
-        this.bossLifeText = this.add.text(450, 550, 'Vida Jefe: '+this.bossLife, {fontSize: '40px', fill: '#FFF'});
+        this.bossLifeText = this.add.text(450, 550, 'Boss Life: '+this.bossLife, {fontSize: '40px', fill: '#FFF'});
     }
 
     update(time) {
-        this.remainingTime.setText('Tiempo: ' + Math.trunc((this.endTime-time)/1000));
-        this.danoAcumuladoText.setText('Daño: '+this.danoAcumulado);
-        this.bossLifeText.setText('Vida Jefe: '+this.bossLife);
+        this.remainingTime.setText('Time: ' + Math.trunc((this.endTime-time)/1000));
+        this.danoAcumuladoText.setText('Woll: '+this.danoAcumulado);
+        this.bossLifeText.setText('Boss Life: '+this.bossLife);
 
 
         //movimiento del player de izquierda a derecha.
@@ -298,7 +298,6 @@ class Level3 extends Phaser.Scene{
     {
         this.bossLife -= this.danoAcumulado;
         this.danoAcumulado = 0;
-        console.log("aaa\n");
     }
 }
 export default Level3;
