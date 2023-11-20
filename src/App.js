@@ -3,6 +3,7 @@ import  Inicio  from "./components/Inicio";
 import  AboutUs  from "./components/AboutUs";
 import AppAnimales from "./components/JuegoAnimales/AppAnimales.js";
 import ListaDeNotas from "./components/ListaNotas/AppListaNotas.js";
+import AppNave from "./components/Nave/AppNave.js";
 import "./App.css"
 
 function App (){
@@ -18,6 +19,7 @@ function App (){
                     <Link to="/aboutUs" className="rutaNav">AboutUs</Link>
                     <Link to="/juegoAnimales" className="rutaNav">Game for Kids</Link>
                     <Link to="/listaNotas" className="rutaNav">Things to do</Link>
+                    <Link to="/nave" className="rutaNav">Game about Spaceships</Link>
                 </section>
             </nav>
 
@@ -26,6 +28,7 @@ function App (){
                 <Route path="aboutUs" element={<AboutUs/>}/>
                 <Route path="juegoAnimales" element={<AppAnimales/>}/>
                 <Route path="listaNotas" element={<ListaDeNotas/>}/>
+                <Route path="nave" element={<AppNave/>}/>
                 {/* <Route path="*" element={<ErrorPage/>}/>
                 <Route path="comparador" element={<Comparador/>}/>
                 <Route path="dude" element={<DudePhaser/>}/>
