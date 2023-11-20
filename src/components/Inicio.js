@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./Inicio.css"
 
 
+
 function Inicio() {
     return(
         <div className="separador"> 

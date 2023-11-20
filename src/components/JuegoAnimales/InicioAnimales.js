@@ -10,6 +10,8 @@ const [nombreJugador, setNombreJugador] = useState('');
     const [puntaje2, setPuntaje2] = useState(0);
     const [mostrarFelicitaciones, setMostrarFelicitaciones] = useState(false);
     const [rondaActual, setRondaActual] = useState(1);
+    const [comodin, setComodin] = useState(false);
+    const [comodin2, setComodin2] = useState(false);
 
     const [segundoTurno, setSegundoTurno] = useState(false);
 
@@ -43,7 +45,7 @@ const [nombreJugador, setNombreJugador] = useState('');
                     placeholder="Nchild's name 2"
                     onChange={(e) => setNombreJugador2(e.target.value)}
                 />
-                <button className='boton' onClick={() => manejarClickJugar(nombreJugador, nombreJugador2)}>Jugar</button>
+                <button className='boton' onClick={() => manejarClickJugar(nombreJugador, nombreJugador2)}>Play</button>
 
             </div>
         );
@@ -62,6 +64,10 @@ const [nombreJugador, setNombreJugador] = useState('');
                     setRondaActual={setRondaActual}
                     segundoTurno={segundoTurno}
                     setSegundoTurno={setSegundoTurno}
+                    comodin={comodin}
+                    setComodin={setComodin}
+                    setComodin2={setComodin2}
+                    comodin2={comodin2}
                 />
             </div>
         );
@@ -79,6 +85,10 @@ const [nombreJugador, setNombreJugador] = useState('');
                     setRondaActual={setRondaActual}
                     setSegundoTurno={setSegundoTurno}
                     segundoTurno={segundoTurno}
+                    comodin={comodin}
+                    setComodin={setComodin}
+                    setComodin2={setComodin2}
+                    comodin2={comodin2}
                 />
             </div>
         );
