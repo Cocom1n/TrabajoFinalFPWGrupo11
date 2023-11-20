@@ -29,9 +29,9 @@ class Level3 extends Phaser.Scene{
         this.platformsl3 = this.physics.add.staticGroup();
         this.platformsl3.create(400, 565, 'ground-lvl3'); //piso
         this.platformsl3.create(220, 240, 'platform1-lvl3');
-        this.platformsl3.create(125, 400, 'platform1-lvl3');
+        this.platformsl3.create(125, 380, 'platform1-lvl3');
         this.platformsl3.create(this.canvas.width-220, 240, 'platform1-lvl3');
-        this.platformsl3.create(this.canvas.width-125, 400, 'platform1-lvl3');
+        this.platformsl3.create(this.canvas.width-125, 380, 'platform1-lvl3');
         this.add.image(400, 100, 'boss');
 
         //creacion del player
@@ -73,7 +73,7 @@ class Level3 extends Phaser.Scene{
             nextTimeShoot: 0,
             max : 8,
             count : 0,
-            shooting: true
+            shooting: false
         };
 
         this.physics.add.collider(this.ballRight, this.platformsl3);
@@ -84,7 +84,7 @@ class Level3 extends Phaser.Scene{
             nextTimeShoot: 0,
             max : 8,
             count : 0,
-            shooting: true
+            shooting: false
         };
 
         this.physics.add.collider(this.ballLeft, this.platformsl3);
@@ -95,10 +95,30 @@ class Level3 extends Phaser.Scene{
             nextTimeShoot: 0,
             max : 8,
             count : 0,
-            shooting: true
+            shooting: false
         };
 
         this.physics.add.collider(this.ballUp, this.platformsl3);
+
+        // Patrones de ataque
+        this.ataques = [
+            {
+                direccion: 0,
+                timeAttack: 1500
+            },
+            {
+                direccion: 1,
+                timeAttack: 7000
+            },
+            {
+                direccion: 2,
+                timeAttack: 15000
+            },
+            {
+                direccion: 0,
+                timeAttack: 25000
+            }
+        ];
     }
 
     update(time) {
@@ -121,9 +141,28 @@ class Level3 extends Phaser.Scene{
             //this.playerJump.play();
         }
 
+        if (this.ataques && this.ataques.length != 0 && this.ataques[0].timeAttack < time)
+        {
+            switch (this.ataques[0].direccion)
+            {
+                case 0:
+                    this.ballUpManager.shooting = true;
+                break;
+                case 1:
+                    this.ballLeftManager.shooting = true;
+                break;
+                default:
+                    this.ballRightManager.shooting = true;
+            }
+            this.ataques.shift();
+        }
+
         this.checkSpawnBalls(this.ballUp, this.ballUpManager, time,0);
         this.checkSpawnBalls(this.ballLeft, this.ballLeftManager, time,1);
         this.checkSpawnBalls(this.ballRight, this.ballRightManager, time,2);
+        this.checkBallsLife(this.ballUp);
+        this.checkBallsLife(this.ballLeft);
+        this.checkBallsLife(this.ballRight);
     }
 
     checkSpawnBalls(balls, ballsManager= {cooldown: 500,nextTimeShoot: 0,max : 8,count : 0,shooting: true}, time, direccion)
@@ -149,12 +188,12 @@ class Level3 extends Phaser.Scene{
                 {
                     if (direccion == 1)
                     {
-                        misil = balls.create(Phaser.Math.Between(-150, -50), this.player.y-80, 'misil');
+                        misil = balls.create(0, this.player.y-80, 'misil');
                         misil.setVelocityX(200);
                     }
                     else
                     {
-                        misil = balls.create(Phaser.Math.Between(850, 950), this.player.y-80, 'misil');
+                        misil = balls.create(this.canvas.width, this.player.y-80, 'misil');
                         misil.setVelocityX(-200);
                     }
                 }
@@ -172,31 +211,14 @@ class Level3 extends Phaser.Scene{
         }
     }
 
-    checkBallsLife(balls, direction)
+    checkBallsLife(balls)
     {
-        // 0 = Desde arriba
-        // 1 = Desde izq
-        // 2 = Desde der
-        if (direction == 1)
-        {
-            balls.children.iterate((children)=>{
-                if(children && children.x > this.canvas.width+50)
-                {
-                    children.destroy();
-
-                }
-            });
-        }
-        if (direction == 2)
-        {
-            balls.children.iterate((children)=>{
-                if(children && children.x < -50)
-                {
-                    children.destroy();
-
-                }
-            });
-        }
+        balls.children.iterate((children)=>{
+            if(children && (children.x > this.canvas.width || children.x < 0))
+            {
+                children.destroy();
+            }
+        });
     }
 }
 export default Level3;
