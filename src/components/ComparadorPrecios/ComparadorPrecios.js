@@ -1,95 +1,105 @@
-import React, { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 import './Comparador.css';
 
 function ComparadorDePrecios (){
  
-    const [ListaProductos, setListaProducto] = useState([]);
-    const [productoNombre, setProductoNombre] = useState('');
-    const [productoPrecio, setProductoPrecio] = useState('');
-    const [productoDistribuidor, setProductoDistribuidor] = useState('');
+  const [ListaProductos, setLista] = useState([]);
+  const [ListaMasBarato, setListaMasBarato] = useState([]);
+  const [Nombre, setNombre] = useState('');
+  const [Precio, setPrecio] = useState('');
+  const [Distribuidor, setDistribuidor] = useState('');
 
-      const AñadirProducto = () => {
-        const newProducto = {
-          nombre: productoNombre,
-          precio: parseFloat(productoPrecio),
-          distribuidor: productoDistribuidor,
-        };
+    const AñadirProducto = () => {
+      if (Nombre && Precio && Distribuidor){
+        const idProducto = Math.max(...ListaProductos.map((producto) => producto.id),0) +1;
+        const nuevoProducto = {
+            id: idProducto,
+            nombre: Nombre,
+            precio: parseFloat(Precio),
+            marca: Distribuidor,
+        }
+        setLista([...ListaProductos, nuevoProducto])
+    }else {
+        alert('Debes llenar todos los campos para comenzar!');
+    }
+  }
 
-      setListaProducto([...ListaProductos, newProducto]);
+  const BorrarListas = () =>{
+      setLista([]);
+      setListaMasBarato([]);
+  }
 
-          setProductoNombre(''); // limpia los campos despues d agregar un producto
-          setProductoPrecio('');
-          setProductoDistribuidor('');
-        };
+  useEffect(() => {
+      CalcularPrecioMinimo()
+      console.log("Se actualizo la lsita con precios mas baratos");
+    }, [ListaProductos]);
 
-      const MinimoPrecio = (distribuidor) => {
-          const productosDistribuidor = ListaProductos.filter(producto => producto.distribuidor === distribuidor);
-          const productoPrecioMin = productosDistribuidor.reduce((min, producto) => (min.precio < producto.precio ? min : producto), {});
+  const CalcularPrecioMinimo = () => {
+      const productosUnicos = Array.from(new Set(ListaProductos.map(producto => producto.nombre)));
 
-          return productoPrecioMin;
-        };
+      const productosMasBaratos = productosUnicos.map(nombreProducto => {
+          const productosConNombre = ListaProductos.filter(producto => producto.nombre === nombreProducto);
+          const precioMinimo = Math.min(...productosConNombre.map(producto => producto.precio));
 
-      const borrarListas = () => {  // limpia ambas listas
-          setListaProducto([]);
-          setProductoDistribuidor([]);
-        };    
+          return productosConNombre.find(producto => producto.precio === precioMinimo);
+      });
+      setListaMasBarato(productosMasBaratos);
+  }
 
-  return (
-    <div>
-      <h1 className="titulo">Comparador de Precios</h1>
+  return(
+      <div>
+        <div className='titulo'><h1>Comparador de precios</h1></div>
+        <section className='contenedores'>
+            <select id="nombre" value={Nombre} onChange={(e) => setNombre(e.target.value)}>
+                <option value="" disabled>Seleccionar</option>
+                <option value="Azucar">Azucar</option>
+                <option value="Pan">Pan</option>
+                <option value="Sal">Sal</option>
+                <option value="Dulce">Dulce</option>
+                <option value="Leche">Leche</option>
+                <option value="Queso">Queso</option>
+                <option value="Yogurt">Yogurt</option>
+                <option value="Fideos">Fideos</option>
+                <option value="Arroz">Arroz</option>
+                <option value="Harina">Harina</option>
+            </select>
+            <input type="number" min="0" value={Precio} onChange={(e) => setPrecio(e.target.value)} />
+            <select id="marca" value={Distribuidor} onChange={(e) => setDistribuidor(e.target.value)}>
+                <option value="" disabled>Seleccionar</option>
+                <option value="Dia">Dia</option>
+                <option value="Vea">Vea</option>
+                <option value="Carrefour">Carrefour</option>
+                <option value="Changomás">Changomás</option>
+                <option value="Comodín">Comodín</option>
+            </select>
+        </section>
 
-        <div>
-          <h3 className="tituloCarga">Agregue sus productos a la lista</h3>
+        <button onClick={AñadirProducto} className="botones">Agregar a la lista</button>
+        <button onClick={BorrarListas} className="botones">Borrar las listas</button>
 
-          <div className="contenedores">
-            <label>Producto:</label>
-            <input type="text" value={productoNombre} onChange={(e) => setProductoNombre(e.target.value)} />
-          </div>
-
-          <div className="contenedores">
-            <label>Precio:</label>
-            <input type="number" value={productoPrecio} onChange={(e) => setProductoPrecio(e.target.value)} />
-          </div>
-          
-          <div className="contenedores">
-            <label>Distribuidor:</label>
-            <input type="text" value={productoDistribuidor} onChange={(e) => setProductoDistribuidor(e.target.value)} />
-          </div>
-          
-          <button onClick={AñadirProducto} className="botones">Agregar a la lista</button>
-        </div>
-
-        <div className="listas"> 
-          <div className="listaProducto" >
-            <h3>Lista de los productos</h3>
+        <section className='listas'>
             <ul>
-              {ListaProductos.map((producto, index) => (
-                <li key={index}>
-                  {producto.nombre} - {producto.distribuidor}: ${producto.precio}
-                </li>
-              ))}
-            </ul>
-          </div>
+                <h3>Lista de los productos</h3>
+                {ListaProductos.map((producto) => (
+                    <li key={producto.id}>
+                        {producto.nombre} - {producto.marca}: ${producto.precio}
+                    </li>
+                ))
 
-          <div className="listaMinPrecio">
-            <h3>Menor precio por el distribuidor</h3>
-           
+                }
+            </ul>
             <ul>
-              {[...new Set(ListaProductos.map(producto => producto.distribuidor))].map((distribuidor, index) => (
-                <li key={index}>
-                  {distribuidor}: {MinimoPrecio(distribuidor).nombre} - ${MinimoPrecio(distribuidor).precio}
-                </li>
-              ))}
-           
+                <h3>Productos de menor precio</h3>
+                {ListaMasBarato.map((producto) => (
+                    <li key={producto.id}>
+                        {producto.nombre} - {producto.marca}: ${producto.precio}
+                    </li>
+                ))}
+
             </ul>
-          </div>
-        </div>
-
-        {/* boton para borrar las listas */}
-      <button onClick={borrarListas} className="botones">Borrar las listas</button>          
-
-    </div>        
+        </section>
+    </div>
   );
-};
+}
 
 export default ComparadorDePrecios;

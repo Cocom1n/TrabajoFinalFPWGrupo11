@@ -1,29 +1,17 @@
-.titulo{
-    margin-left:370px;
-}
-
-.tituloCarga{
-    margin-left:400px;
+.titulo{ 
+   text-align: center;
 }
 
 .contenedores{
-    margin: 5px;
-    padding-left: 400px; 
-    padding-bottom: 2px;
-    border-radius: 100px;
+    justify-content: center;
 }
 
 .botones{
-    margin-left:475px;
     padding: 6px;
     border-radius: 100px;
+    cursor: pointer;
 }
 
 .listas{
-    display: flex ;
-    padding-left: 215px;
-}
-
-.listaProducto, .listaMinPrecio{
-    flex: 1;
+    justify-content: center;
 }
