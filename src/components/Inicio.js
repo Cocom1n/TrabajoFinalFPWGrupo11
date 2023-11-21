@@ -16,14 +16,21 @@ function Inicio() {
                         <Link to="/aboutUs" className="ruta">About Us</Link>
                     </button>
                     <button>
+                        <Link to="/comparadorPrecios" className="ruta">Comparator</Link>
+                    </button>
+                    <button>
+                        <Link to="/listaNotas" className="ruta">Notes List</Link>
+                    </button>
+                    <button>
                         <Link to="/juegoAnimales" className="ruta">Game for Kids</Link>
                     </button>
                     <button>
-                        <Link to="/listaNotas" className="ruta">Things to do</Link>
+                        <Link to="/dude" className="ruta">Dude game</Link>
                     </button>
                     <button>
                         <Link to="/nave" className="ruta">Game about Spaceships</Link>
                     </button>
+                    
                 </section>
             </section>
             <div className="imagen"></div>

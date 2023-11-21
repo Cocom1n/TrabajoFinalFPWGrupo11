@@ -25,6 +25,13 @@
     background-size: cover;
 }
 
+.Botones{
+    display: flex;
+    flex-wrap: wrap;
+    width: 400px;
+    justify-content: center;
+}
+
 .Botones button{
     border: none;
     margin: 5px;

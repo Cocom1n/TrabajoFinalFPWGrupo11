@@ -17,11 +17,11 @@ function App (){
                 <Link className="tittle" to="/">LOS GATOS</Link>
                 </h2>
                 <section className="rutas">
-                    <Link to="/" className="ruta">Home</Link>
-                    <Link to="/aboutUs" className="ruta">AboutUs</Link>
-                    <Link to="/juegoAnimales" className="ruta">Game for Kids</Link>
-                    <Link to="/listaNotas" className="ruta">Things to do</Link>
-                    <Link to="/comparadorPrecios" className="ruta"> Comparator </Link>
+                    {/* <Link to="/" className="rutaNav">Home</Link> */}
+                    <Link to="/aboutUs" className="rutaNav">AboutUs</Link>
+                    <Link to="/comparadorPrecios" className="rutaNav"> Comparator </Link>
+                    <Link to="/listaNotas" className="rutaNav">Notes List</Link>
+                    <Link to="/juegoAnimales" className="rutaNav">Game for Kids</Link>
                     <Link to="/dude" className="rutaNav">Dude Game</Link>
                     <Link to="/nave" className="rutaNav">Game about Spaceships</Link>
                 </section>

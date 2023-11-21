@@ -47,9 +47,9 @@ function ComparadorDePrecios (){
   }
 
   return(
-      <div>
-        <div className='titulo'><h1>Comparador de precios</h1></div>
-        <section className='contenedores'>
+      <div className='comparador'>
+            <h1>Comparador de precios</h1>
+        <section className='inputsComparador'>
             <select id="nombre" value={Nombre} onChange={(e) => setNombre(e.target.value)}>
                 <option value="" disabled>Seleccionar</option>
                 <option value="Azucar">Azucar</option>
@@ -73,10 +73,11 @@ function ComparadorDePrecios (){
                 <option value="Comodín">Comodín</option>
             </select>
         </section>
-
-        <button onClick={AñadirProducto} className="botones">Agregar a la lista</button>
-        <button onClick={BorrarListas} className="botones">Borrar las listas</button>
-
+        <section className='botonesComparador'>
+            <button onClick={AñadirProducto} className="botones">Agregar a la lista</button>
+            <button onClick={BorrarListas} className="botones">Borrar las listas</button>
+        </section>
+        
         <section className='listas'>
             <ul>
                 <h3>Lista de los productos</h3>
