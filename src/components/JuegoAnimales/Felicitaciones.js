@@ -11,43 +11,23 @@ function Felicitaciones({ nombreJugador, nombreJugador2, puntaje, puntaje2, setM
         setSegundoTurno(true);
         setMostrarFelicitaciones(false);
         setMostrarJuego(true);
-        //setComodin(false);
-        //setComodin2(false);
-    }
-    const MostrarGanador = ()=>{
-        // if(segundoTurno == true)
-        // {
-        //     if (puntaje == puntaje2) {
-        //         <p> Empate, Ambos puntajes son iguales</p>
-        //     }
-        //     else if(puntaje > puntaje2){
-        //         <p> {nombreJugador} ha ganado la partida con {puntaje} puntos</p>
-        //     }
-        //     else if(puntaje2 > puntaje){
-        //         <p> {nombreJugador2} ha ganado la partida con {puntaje2} puntos</p>
-        //     }
-        // }
-        // else{
-        //     <p>No se ingreso otro puntaje</p>
-        // }
+        setComodin(false);
+        setComodin2(false);
     }
     return (
         <div className='happy'>
-            <p className='score'>Total Score: 
-                {<p> {nombreJugador} Your score is: {puntaje}</p>}
-                {<p> {nombreJugador2} Your score is: {puntaje2}</p>}
-            </p>
+            <h1 className='score'>Final score</h1>
+            {<p> {nombreJugador} Your score is: {puntaje}</p>}
+            {<p> {nombreJugador2} Your score is: {puntaje2}</p>}
             
-            <p className='score'>
-                The winner is: 
-                <p> {puntaje == puntaje2 && <p>Tie! Have the same points</p>} </p>
-                <p> {puntaje > puntaje2 && <p>{nombreJugador} win the game with {puntaje} points</p>} </p>
-                <p> {puntaje2 > puntaje && <p>{nombreJugador2} win the game with {puntaje2} points</p>} </p>
-            </p>
+            
+            <h2 className='score'>The winner is</h2>
+            <div className='ganador'> {puntaje == puntaje2 && <p>Tie! Have the same points</p>} </div>
+            <div className='ganador'> {puntaje > puntaje2 && <p>{nombreJugador} win <br/>the game with {puntaje} points</p>} </div>
+            <div className='ganador'> {puntaje2 > puntaje && <p>{nombreJugador2} win <br/>the game with {puntaje2} points</p>} </div>
+            
 
-            <button onClick={volverAInicio}>
-                Start Again
-            </button>
+            <button className='again' onClick={volverAInicio}>Start Again</button>
 
 
         </div>
