@@ -43,3 +43,7 @@
 .Card h2{
     margin: 5px;
 }
+
+.error{
+    color: #ffffff;
+}

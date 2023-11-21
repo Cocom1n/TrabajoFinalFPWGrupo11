@@ -6,6 +6,7 @@ import ListaDeNotas from "./components/ListaNotas/AppListaNotas.js";
 import AppNave from "./components/Nave/AppNave.js";
 import ComparadorPrecios from "./components/ComparadorPrecios/AppComparador.js"; 
 import AppDude from "./components/Dude/AppDude.js";
+import ErrorPage from "./components/Error.js";
 import "./App.css"
 
 function App (){
@@ -35,8 +36,7 @@ function App (){
                 <Route path="nave" element={<AppNave/>}/>
                 <Route path="comparadorPrecios" element={<ComparadorPrecios/>}/>
                 <Route path="dude" element={<AppDude/>}/>
-
-                {/* <Route path="*" element={<ErrorPage/>}/>*/}
+                <Route path="*" element={<ErrorPage/>}/>
             </Routes>
         </Router>
         
