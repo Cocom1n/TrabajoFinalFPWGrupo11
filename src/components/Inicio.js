@@ -21,6 +21,9 @@ function Inicio() {
                     <button>
                         <Link to="/listaNotas" className="ruta">Things to do</Link>
                     </button>
+                    <button>
+                        <Link to="/nave" className="ruta">Game about Spaceships</Link>
+                    </button>
                 </section>
             </section>
             <div className="imagen"></div>
