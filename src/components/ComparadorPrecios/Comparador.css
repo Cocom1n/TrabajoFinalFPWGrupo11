@@ -1,0 +1,17 @@
+.titulo{ 
+   text-align: center;
+}
+
+.contenedores{
+    justify-content: center;
+}
+
+.botones{
+    padding: 6px;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.listas{
+    justify-content: center;
+}
